@@ -14,9 +14,10 @@ jobs:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
     name: Build and Deploy Job
+    environment: production
     env:
-      VUE_APP_ORDER_SERVICE_URL: https://order-service-app-jao-f7bdaxe2ghg5dfff.canadacentral-01.azurewebsites.net
-      VUE_APP_PRODUCT_SERVICE_URL: https://product-service-app-jao-h2bme5h9h7gteras.canadacentral-01.azurewebsites.net
+      VUE_APP_ORDER_SERVICE_URL: ${{ vars.VUE_APP_ORDER_SERVICE_URL }}
+      VUE_APP_PRODUCT_SERVICE_URL: ${{ vars.VUE_APP_PRODUCT_SERVICE_URL }}
     steps:
       - uses: actions/checkout@v3
         with:
